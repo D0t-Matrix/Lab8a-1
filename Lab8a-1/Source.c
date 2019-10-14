@@ -18,7 +18,6 @@ Total operation-code pairs are 28.
 #define CODE_LENGTH 7
 #define OPERATION_STRING_LENGTH 5
 #define FILE_NAME "lookup_table.txt"
-void importData(struct unionizedData* uData);
 void printDataDebug(struct unionizedData* uData);
 
 struct unionizedData
@@ -76,7 +75,11 @@ int main(void)
 	for (; j < NUMBER_OF_PAIRS; j++) {
 		//compare if the user entered string  is the same as current binary code or not
 		//if the same, set the flag to one and break
-
+		if (strcmp(userString, uData[j].binaryValue))
+		{
+			flag = j;
+			break;
+		}
 
 	}
 	//display result
@@ -85,7 +88,7 @@ int main(void)
 	}
 	else {
 		//display the operation string for the user enter binary code string
-
+		printf("Operation string is: %5s given the input of %7s.\n", uData[flag].label, userString);
 
 	}
 	return EXIT_SUCCESS;
