@@ -19,10 +19,12 @@ Total operation-code pairs are 28.
 #define OPERATION_STRING_LENGTH 5
 #define FILE_NAME "lookup_table.txt"
 
+void printData(struct unionizedData uData[NUMBER_OF_PAIRS]);
+
 struct unionizedData
 {
 	char label[OPERATION_STRING_LENGTH];
-	char binaryValue[CODE_LENGTH ];
+	char binaryValue[CODE_LENGTH];
 };
 int main(void) 
 {
@@ -57,14 +59,12 @@ int main(void)
 	}
 	
 	//print the table to double check
-	for (int i = 0; i < NUMBER_OF_PAIRS; i++)
-		printf("%s %s\n", uData[i].label, uData[i].binaryValue);
+	printData(uData);
 
 	//ask for binary code string
 	puts("Please enter 7-digit binary code string:");
-	char userString[CODE_LENGTH + 1];
-	userString[CODE_LENGTH] = "\0";
-	scanf("%s", userString);
+	char userString[CODE_LENGTH];
+	scanf("%7s", userString);
 
 
 	//Iterate the lookup table to find the user entered code. Use the strcmp function to compare strings
@@ -85,7 +85,13 @@ int main(void)
 	else {
 		//display the operation string for the user enter binary code string
 		printf("Operation string is: %s given the input of %s.\n", uData[flag].label, userString);
-
 	}
+	scanf("%s", userString);
 	return EXIT_SUCCESS;
+}
+
+void printData(struct unionizedData uData[NUMBER_OF_PAIRS])
+{
+	for (int i = 0; i < NUMBER_OF_PAIRS; i++)
+		printf("%5s %7s \n", uData[i].label, uData[i].binaryValue);
 }
